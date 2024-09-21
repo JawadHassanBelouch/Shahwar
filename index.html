@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+      <span class="big-circle"></span>
+      <img src="img/shape.png" class="square" alt="" />
+      <div class="form">
+        <div class="contact-info">
+          <h3 class="title">Let's get in touch</h3>
+          <p class="text">
+            Ecommerce has revolutionized the way we shop, providing endless options and convenience at our fingertips!
+          </p>
+
+          <div class="info">
+            <div class="information">
+              <img src="img/location.png" class="icon" alt="" />
+              <p></p>
+            </div>
+            <div class="information">
+              <img src="img/email.png" class="icon" alt="" />
+              <p></p>
+            </div>
+            <div class="information">
+              <img src="img/phone.png" class="icon" alt="" />
+              <p></p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <p>Connect with us :</p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f "></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+
+          <form id="contact-form" autocomplete="off">
+            <h3 class="title">Contact us</h3>
+            <div class="input-container">
+              <input type="text" name="name" class="input" required />
+              <label for="name">Username</label>
+              <span>Username</span>
+            </div>
+            <div class="input-container">
+              <input type="email" name="email" class="input" required />
+              <label for="email">Email</label>
+              <span>Email</span>
+            </div>
+            <div class="input-container">
+              <input type="tel" name="phone" class="input" required />
+              <label for="phone">Phone</label>
+              <span>Phone</span>
+            </div>
+            <div class="input-container textarea">
+              <textarea name="message" class="input" required></textarea>
+              <label for="message">Message</label>
+              <span>Message</span>
+            </div>
+            <input type="submit" value="Send" class="btn" />
+
+            <!-- Exit button to close the form -->
+            <button type="button" id="exit-form-btn" class="btn">Exit</button>
+          </form>
+        </div>  
+        <div>
+          <button id="open-form-btn" class="btn" style="width: 200px; height: 60px; margin-bottom: 2%; margin-top: 8%; margin-left: 20%;">
+            <i class="fas fa-envelope fa-2x"></i>
+          </button>
+        </div>
+       
+        <!-- Add this script to handle form submission and send email -->
+        <script type="text/javascript">
+          document.getElementById('contact-form').addEventListener('submit', function(event) {
+              event.preventDefault(); // Prevent the form from reloading the page
+        
+              // Send email using EmailJS
+              emailjs.sendForm('service_2jyh28f', 'template_omwf463', this)
+                  .then(function() {
+                      alert('Email sent successfully!');
+                  }, function(error) {
+                      alert('Failed to send email. Please try again.');
+                      console.log('EmailJS error:', error);
+                  });
+          });
+        </script>
+
+        <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script type="text/javascript">
+          (function(){
+              emailjs.init("dcPLUKL_utctpjy7U"); // Replace with your User ID from EmailJS
+          })();
+        </script>
+        <script src="app.js"></script>
+
+        <!-- JavaScript to open the contact form and handle Exit button -->
+        <script>
+          const openFormBtn = document.getElementById('open-form-btn');
+          const exitFormBtn = document.getElementById('exit-form-btn');
+          const contactForm = document.querySelector('.contact-form');
+
+          // Show the form and hide the "Send Message" button when clicked
+          openFormBtn.addEventListener('click', function() {
+            contactForm.style.display = 'block'; // Show the form
+            openFormBtn.style.display = 'none';  // Hide the "Send Message" button
+          });
+
+          // Hide the form and show the "Send Message" button when "Exit" is clicked
+          exitFormBtn.addEventListener('click', function() {
+            contactForm.style.display = 'none';  // Hide the form
+            openFormBtn.style.display = 'block'; // Show the "Send Message" button
+          });
+        </script>
+      </div>
+  </body>
+</html>
